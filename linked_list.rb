@@ -23,10 +23,8 @@ class LinkedList
       @tail = new_node
     else
       old_head = @head
-      @head.next_node = new_node
       @head = new_node
       @head.next_node = old_head
-      @tail.next_node = nil
     end
   end
 
@@ -68,6 +66,32 @@ class LinkedList
     @tail = previous_node
     @tail.next_node = nil
   end
+
+  def contains?(value)
+    tmp = @head
+    contains_value = false
+    while tmp.next_node != nil
+      if tmp.value == value
+        return contains_value = true
+      end
+      p "TMP = #{tmp.value}"
+      tmp = tmp.next_node
+    end
+    return contains_value
+  end
+
+  def find(value)
+    tmp = @head
+    iteration = 0
+    while tmp.next_node != nil
+      if tmp.value == value
+        return iteration
+      end
+      tmp = tmp.next_node
+      iteration += 1
+    end
+    return nil
+  end
 end
 
 class Node
@@ -80,12 +104,12 @@ class Node
 end
 
 linked_list = LinkedList.new
-linked_list.prepend(3)
+linked_list.append(3)
 linked_list.prepend(2)
 linked_list.append(9)
 linked_list.append(-1)
-linked_list.prepend(20)
+linked_list.append(20)
 p linked_list
 
-linked_list.pop
-p linked_list
+p linked_list.contains?(3)
+p linked_list.find(-1)
