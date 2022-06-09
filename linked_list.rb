@@ -92,6 +92,17 @@ class LinkedList
     end
     return nil
   end
+
+  def to_s
+    linked_string = ""
+    tmp = @head
+    while tmp.next_node != nil
+      linked_string += "(#{tmp.value}) -> "
+      tmp = tmp.next_node
+    end
+    linked_string += "nil"
+    return linked_string
+  end
 end
 
 class Node
@@ -111,5 +122,4 @@ linked_list.append(-1)
 linked_list.append(20)
 p linked_list
 
-p linked_list.contains?(3)
-p linked_list.find(-1)
+p linked_list.to_s
